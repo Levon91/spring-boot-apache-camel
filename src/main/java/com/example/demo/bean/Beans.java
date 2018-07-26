@@ -3,7 +3,6 @@ package com.example.demo.bean;
 import com.example.demo.model.Record;
 import com.example.demo.repository.Route2Repository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Bean;
 import org.springframework.stereotype.Component;
 
 import java.io.File;
