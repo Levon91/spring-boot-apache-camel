@@ -7,11 +7,12 @@ import org.springframework.stereotype.Component;
  * Created by levont on 7/24/2018.
  */
 @Component
-public class MyRoute extends RouteBuilder {
+public class Route3 extends RouteBuilder {
 
     @Override
     public void configure() throws Exception {
-        from("file:D:/workspace/camel/input")
-                .to("file:D:/workspace/camel/output");
+
+        from("quartz2://mytimer1?cron=0 */5 * ? * *")
+                .to("bean:beans?method=route3Bean");
     }
 }

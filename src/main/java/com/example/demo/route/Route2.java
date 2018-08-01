@@ -7,15 +7,12 @@ import org.springframework.stereotype.Component;
  * Created by levont on 7/24/2018.
  */
 @Component
-public class MyRoute2 extends RouteBuilder {
+public class Route2 extends RouteBuilder {
 
     @Override
     public void configure() throws Exception {
 
-        from("file:D:/workspace/camel/output?noop=true&scheduler=quartz2&scheduler.cron=0 * * ? * *")
-                .choice()
-                .when()
-                .simple("${file:onlyname} regex '(.*)(txt)$'")
+        from("quartz2://mytimer2?cron=0 */3 * ? * *")
                 .to("bean:beans?method=route2Bean");
     }
 }
