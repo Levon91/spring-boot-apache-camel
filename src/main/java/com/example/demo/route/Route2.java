@@ -13,6 +13,7 @@ public class Route2 extends RouteBuilder {
     public void configure() throws Exception {
 
         from("quartz2://mytimer2?cron=0 */3 * ? * *")
+                .to("log:Route2")
                 .to("bean:beans?method=route2Bean");
     }
 }

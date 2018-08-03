@@ -12,6 +12,7 @@ public class Route1 extends RouteBuilder {
     @Override
     public void configure() throws Exception {
         from("file:D:/workspace/camel/input")
+                .to("log:Route1")
                 .to("file:D:/workspace/camel/output");
     }
 }

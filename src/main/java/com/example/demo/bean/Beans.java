@@ -3,6 +3,7 @@ package com.example.demo.bean;
 import com.example.demo.model.Record;
 import com.example.demo.repository.RouteRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
 import java.io.File;
@@ -16,6 +17,11 @@ import java.util.Date;
  */
 @Component(value = "beans")
 public class Beans {
+
+    private static long counter;
+
+    @Value("${greeting}")
+    private String greeting;
 
     @Autowired
     private RouteRepository repository;
@@ -32,7 +38,7 @@ public class Beans {
                     Record saved = repository.save(new Record(s, expirationDate));
                     System.out.println(saved.getRecord());
                     boolean isDeleted = tmp.delete();
-                    System.out.println(isDeleted ? "file deleted" : "failed to delete file");
+                    System.out.println(isDeleted ? tmp.getName() + " deleted" : "failed to delete " + tmp.getName() + " file");
                 }
             }
         } else {
@@ -45,5 +51,11 @@ public class Beans {
         Integer count = repository.deleteAllByExpirationDateBefore(new Date(System.currentTimeMillis()));
         System.out.println(count + " items deleted");
         return true;
+    }
+
+    public String sayGreeting() {
+        counter++;
+        StringBuffer buffer = new StringBuffer(greeting + " " + counter + " times");
+        return buffer.toString();
     }
 }
