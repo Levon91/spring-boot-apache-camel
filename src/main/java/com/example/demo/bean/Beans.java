@@ -33,12 +33,12 @@ public class Beans {
             for (File tmp : files) {
                 if (tmp.getName().matches("(.*)(txt)$")) {
                     Date expirationDate = new Date(System.currentTimeMillis() + ((1000 * 60) * 10));
-                    System.out.println(expirationDate);
+//                    System.out.println(expirationDate);
                     String s = new String(Files.readAllBytes(Paths.get(tmp.getPath())));
                     Record saved = repository.save(new Record(s, expirationDate));
-                    System.out.println(saved.getRecord());
+//                    System.out.println(saved.getRecord());
                     boolean isDeleted = tmp.delete();
-                    System.out.println(isDeleted ? tmp.getName() + " deleted" : "failed to delete " + tmp.getName() + " file");
+                    System.out.println(isDeleted ? "Route-2: " + tmp.getName() + " deleted" : "Route-2: failed to delete " + tmp.getName() + " file");
                 }
             }
         } else {
@@ -49,7 +49,7 @@ public class Beans {
 
     public boolean route3Bean() throws IOException {
         Integer count = repository.deleteAllByExpirationDateBefore(new Date(System.currentTimeMillis()));
-        System.out.println(count + " items deleted");
+        System.out.println("Route-3: " + count + " items deleted");
         return true;
     }
 
