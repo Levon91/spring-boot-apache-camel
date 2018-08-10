@@ -53,6 +53,10 @@ public class Beans {
         return true;
     }
 
+    public void route4Bean(String fileData) throws IOException {
+        System.out.println("Route-4: " + fileData);
+    }
+
     public String sayGreeting() {
         counter++;
         StringBuffer buffer = new StringBuffer(greeting + " " + counter + " times");
